@@ -1,22 +1,22 @@
 # Working With Contract With JavaScript Library
 
-Для взаимодействия с сетью в JavaScript или TypeScript используется библиотека [echojs-lib](https://www.npmjs.com/package/echojs-lib).
+In order to work with the network using JavaScript or TypeScript you will need [echojs-lib](https://www.npmjs.com/package/echojs-lib).
 
-Документацию к библиотеке вы сможете найти на в разделе `docs` репозитория - [https://github.com/echoprotocol/echojs-lib/tree/master/docs](https://github.com/echoprotocol/echojs-lib/tree/master/docs).
+You can find documentation to `echojs-lib` in `docs` section of the repository: [https://github.com/echoprotocol/echojs-lib/tree/master/docs](https://github.com/echoprotocol/echojs-lib/tree/master/docs).
 
-Ниже приведен пример работы с сетью используя библиотеку `echojs-lib` для загрузки и вызова конракта ERC20 токена.
+Below is an example of how to upload and call an ERC20 token contract within the network using `echojs-lib`.
 
-Для начала работы вам необходимо иметь приватный ключ аккаунта с ненулевым балансом, а также ws доступ к актуальному узлу.
+First you need to have the private key of an account with a positive balance and ws access to the relevant node.
 
 ## Initialization
 
-Библиотека устанавливается через `npm`:
+Install the library via `npm`:
 
 ```bash
 npm i echojs-lib
 ```
 
-Для начала работы библиотеки необходимо инициализировать подключение к сети, а также импортировать приватный ключ
+To be able to use `echojs-lib`, you need to initialize a network connection and import the private key
 
 ```javascript
 const { default: echo, PrivateKey, constants } = require('echojs-lib');
@@ -35,7 +35,8 @@ connect().then(async () => {
 
 ## Contract Deployment
 
-Для создания контракта необходимо собрать соответствующую операцию, подписать ее и отправить в сеть:
+In order to create a contract, you need to prepare a corresponding operation, sign it and send it to the network:
+
 ```javascript
 const bytecode = '608060405261271060025534801561001657600080fd5b506127106000803373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020819055503373ffffffffffffffffffffffffffffffffffffffff16600073ffffffffffffffffffffffffffffffffffffffff167fddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef6127106040518082815260200191505060405180910390a3610d8e806100d36000396000f30060806040526004361061008e576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff168063095ea7b31461009357806318160ddd146100f857806323b872dd1461012357806339509351146101a857806370a082311461020d578063a457c2d714610264578063a9059cbb146102c9578063dd62ed3e1461032e575b600080fd5b34801561009f57600080fd5b506100de600480360381019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190803590602001909291905050506103a5565b604051808215151515815260200191505060405180910390f35b34801561010457600080fd5b5061010d6103bc565b6040518082815260200191505060405180910390f35b34801561012f57600080fd5b5061018e600480360381019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190803573ffffffffffffffffffffffffffffffffffffffff169060200190929190803590602001909291905050506103c6565b604051808215151515815260200191505060405180910390f35b3480156101b457600080fd5b506101f3600480360381019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919080359060200190929190505050610477565b604051808215151515815260200191505060405180910390f35b34801561021957600080fd5b5061024e600480360381019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919050505061051c565b6040518082815260200191505060405180910390f35b34801561027057600080fd5b506102af600480360381019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919080359060200190929190505050610564565b604051808215151515815260200191505060405180910390f35b3480156102d557600080fd5b50610314600480360381019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919080359060200190929190505050610609565b604051808215151515815260200191505060405180910390f35b34801561033a57600080fd5b5061038f600480360381019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610620565b6040518082815260200191505060405180910390f35b60006103b23384846106a7565b6001905092915050565b6000600254905090565b60006103d3848484610928565b61046c843361046785600160008a73ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060003373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002054610c4e90919063ffffffff16565b6106a7565b600190509392505050565b6000610512338461050d85600160003373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060008973ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002054610cd890919063ffffffff16565b6106a7565b6001905092915050565b60008060008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020549050919050565b60006105ff33846105fa85600160003373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060008973ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002054610c4e90919063ffffffff16565b6106a7565b6001905092915050565b6000610616338484610928565b6001905092915050565b6000600160008473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002054905092915050565b600073ffffffffffffffffffffffffffffffffffffffff168373ffffffffffffffffffffffffffffffffffffffff1614151515610772576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260248152602001807f45524332303a20617070726f76652066726f6d20746865207a65726f2061646481526020017f726573730000000000000000000000000000000000000000000000000000000081525060400191505060405180910390fd5b600073ffffffffffffffffffffffffffffffffffffffff168273ffffffffffffffffffffffffffffffffffffffff161415151561083d576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260228152602001807f45524332303a20617070726f766520746f20746865207a65726f20616464726581526020017f737300000000000000000000000000000000000000000000000000000000000081525060400191505060405180910390fd5b80600160008573ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060008473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020819055508173ffffffffffffffffffffffffffffffffffffffff168373ffffffffffffffffffffffffffffffffffffffff167f8c5be1e5ebec7d5bd14f71427d1e84f3dd0314c0f7b2291e5b200ac8c7c3b925836040518082815260200191505060405180910390a3505050565b600073ffffffffffffffffffffffffffffffffffffffff168373ffffffffffffffffffffffffffffffffffffffff16141515156109f3576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260258152602001807f45524332303a207472616e736665722066726f6d20746865207a65726f20616481526020017f647265737300000000000000000000000000000000000000000000000000000081525060400191505060405180910390fd5b600073ffffffffffffffffffffffffffffffffffffffff168273ffffffffffffffffffffffffffffffffffffffff1614151515610abe576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260238152602001807f45524332303a207472616e7366657220746f20746865207a65726f206164647281526020017f657373000000000000000000000000000000000000000000000000000000000081525060400191505060405180910390fd5b610b0f816000808673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002054610c4e90919063ffffffff16565b6000808573ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002081905550610ba2816000808573ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002054610cd890919063ffffffff16565b6000808473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020819055508173ffffffffffffffffffffffffffffffffffffffff168373ffffffffffffffffffffffffffffffffffffffff167fddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef836040518082815260200191505060405180910390a3505050565b600080838311151515610cc9576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252601e8152602001807f536166654d6174683a207375627472616374696f6e206f766572666c6f77000081525060200191505060405180910390fd5b82840390508091505092915050565b6000808284019050838110151515610d58576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252601b8152602001807f536166654d6174683a206164646974696f6e206f766572666c6f77000000000081525060200191505060405180910390fd5b80915050929150505600a165627a7a723058209db49b546872ac269ed6ee5bd01a2644ad7a12d7abf648300c0afd08ef5a483d0029';
 
@@ -58,7 +59,7 @@ const result = await echo
 console.log(result);
 ```
 
-Переменная `result` будет иметь следующее значение:
+`result` will have the following value:
 
 ```json
 [
@@ -106,8 +107,8 @@ console.log(result);
 
 ```
 
-ID `1.15.721` в массиве `operation_results` определяет идентификатор результата выполнения операции. Объект с этим идентификатором хранит информацию о созданном контракте.
-Для получения данного объекта используется метод `api.getObject(objectId)`
+`1.15.721` in the `operation_results` array is the ID of the result of the operation. The object with this ID stores the information about the created contract.
+Use `api.getObject(objectId)` to return this object
 
 ```javascript
 const object = await echo.api.getObject('1.15.726');
@@ -125,28 +126,28 @@ console.log(object);
 }
 ```
 
-Первый элемент массива `contracts_id` является идентификатор контракта. Id контракта используется для взаимодействия с ним.
-
+The first element of the `contracts_id` array is the ID of the contract. This ID is used to interact with the contract.
+ 
 ## Call contract
 
-Вызов контракта может быть осуществлен двумя способами - вызов без изменения состояния (для получения значения переменных или методов) и с изменением (отправка транзакции).
-
+The contract can be called in two ways: calling the contract without changing its state (to return the value of methods and variables) or calling the contract and changing its state (sending transaction).
+ 
 ## Get ERC20 Token Balance
 
-Получение баланса аккаунта в токенах не требует отправки транзакции, поэтому для выполнения используется метод `callContractNoChangingState(contractId, accountId, assetId, bytecode)`:
+A transaction is not needed in order to return the account balance in tokens, and that's why `callContractNoChangingState(contractId, accountId, assetId, bytecode)` is used:
 
 ```javascript
 const balance = await echo.api.callContractNoChangingState('1.14.352', '1.2.1334', '1.3.0', '70a082310000000000000000000000000000000000000000000000000000000000000536');
 console.log(parseInt(balance, 16)); // 10000
 ```
 
-Последний аргумент метода - хеш вызываемого метода контракта объединенный с аргументами. 
-Конкретно в данном примере `70a08231` является хешем метода `balanceOf(address)`, а `0000000000000000000000000000000000000000000000000000000000000536` - адрес, баланс которого необходимо получить, дополненный нулевыми байтами до 32 байт. 
-Данный адрес соответсвтует аккаунту Echo `1.2.1334`. Детальнее о конвертации идентификаторов в адрес описано в разделе [EVM. Introduction](developers/evm/introduction.md) .
+The last argument of the method is the hash of the called contract method merged with the arguments.
+In this example, `70a08231` is the hash of the method `balanceOf(address)` and `0000000000000000000000000000000000000000000000000000000000000536` is the account address the balance of which needs to be returned supplemented with zero bytes up to 32 bytes.
+This address points to Echo account `1.2.1334`. You can find more detailed information on converion of IDs into addresses in the following section: [EVM. Introduction](developers/evm/introduction.md).
 
 ## Transfer ERC20 Token
 
-Перевод токена - это операция, требующая осуществления транзакции.
+Token transfer is an operation that requires a transaction.
 
 ```javascript
 const contractId = '1.14.352';
@@ -176,7 +177,7 @@ const result = await echo
 console.log(result);
 ```
 
-В результате выполнения метода в сеть Echo будет отправлена транзакция. Переменна result будет иметь следующее значение:
+The method's execution results in a transaction sent to the Echo network. the result variable will have the following value:
 
 ```json
 [
@@ -223,7 +224,7 @@ console.log(result);
 ]
 ```
 
-В результате трансфера контракт вызывает событие `event Transfer(address indexed from, address indexed to, uint256 value);`. Просмотреть список логов можно используя метод `getContractResult`, подставив в аргумент идентификатор результата выполнения операции:
+As a result of the transfer, the contract raises an event: `event Transfer(address indexed from, address indexed to, uint256 value);`. To view the list of logs you can use `getContractResult` with the ID of the result of the operation as an argument:
 
 ```javascript
 const result = await echo.api.getContractResult('1.15.727');
@@ -264,7 +265,7 @@ console.log(result);
 
 ```
 
-Вызов контракта изменяет баланс аккаунта в токенах. В этом можно убедиться вернувшись к вызову метода контракта `balanceOf`:
+The contract call changes the account balance in tokens. You can check this by calling the contract method `balanceOf` again:
 
 ```javascript
 const balance = await echo.api.callContractNoChangingState('1.14.352', '1.2.1334', '1.3.0', '70a082310000000000000000000000000000000000000000000000000000000000000536');
